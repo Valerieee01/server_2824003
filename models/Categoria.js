@@ -47,6 +47,7 @@ class Categoria{
             return null;
         }
 
+        //cambio
         const categoria = consulta[0];
         return {
            id : categoria.nombre,
