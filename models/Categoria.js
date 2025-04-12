@@ -23,7 +23,6 @@ class Categoria{
         }
     }
 
-
     async delete(id) {
         try {
             const [datos] = await this.getById(id)
@@ -32,35 +31,40 @@ class Categoria{
             const tieneProductosRelacionados = await this.relacionProductos(datos.id);
             
             // consulta si tiene productos relacionados
-             if (tieneProductosRelacionados.length > 0) {        
+            if (tieneProductosRelacionados.length > 0) {        
                 return {
                     error: true,
                     message: "No se puede eliminar la categoria existen productos relacionados"  
                 }   
-             }
+            }
      
              // si no tiene se elimina 
-             const [eliminado] = await connection.query(`delete from categorias where id = ${id}`);
+            const [eliminado] = await connection.query(`delete from categorias where id = ${id}`);
      
-                 if (eliminado.affectedRows > 0) {
+                if (eliminado.affectedRows > 0) {
                     return {
                         error: false,
                         message: `Se elimino con exito la categoria con id = ${id}`,
                         data: datos
                     }   
-                 }else {
+                }else {
                     return {
                         error: true,
                         message: `No se pudo eliminar ninguna Categoria = ${id}`
                     }  
-                 }
+                }
             
         } catch (error) {
             throw new Error("Error al obtener las categorias");
         }
-     }
+    }
 
-     async relacionProductos(categoria_id) {
+    async update(id,nombre) {
+        console.log(id, nombre);
+
+    }
+
+    async relacionProductos(categoria_id) {
         try {
             const [rows] = await connection.query(`select * from productos where categoria_id = ${categoria_id} `);
             console.log(rows);
@@ -68,10 +72,9 @@ class Categoria{
         } catch (error) {
             throw new Error("Error al obtener las categorias");
         }        
-     }
+    }
 
-
-     async getById(id){
+    async getById(id){
         const [consulta] = await connection.query(`select * from categorias where id = ${id}`);  
         
         if (!consulta || consulta.length === 0) {
@@ -80,6 +83,6 @@ class Categoria{
         }
         
         return consulta;
-     }
+    }
 }
 export default Categoria;

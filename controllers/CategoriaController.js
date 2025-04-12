@@ -19,12 +19,15 @@ class CategoriasController{
     }
     
     static async updateCategoria (req, res) {
+        //query params
         const { id } = req.params;
-        const OBJCategoria = new Categoria();
-        const categorias = await OBJCategoria.put(id);
-        return res.json(categorias);
+        const { nombre } = req.body;
+         const OBJCategoria = new Categoria();
+         const categorias = await OBJCategoria.update(id, nombre);
+         return res.json(categorias);
     }
 
+    
     static async deleteCategoria (req, res) {
         const { id } = req.params;
         const OBJCategoria = new Categoria();
