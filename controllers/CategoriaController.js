@@ -18,12 +18,12 @@ class CategoriasController{
        return res.json(categorias);
     }
     
-    static async updateCategoria (req, res) {
+    static async updatePartial (req, res) {
         //query params
         const { id } = req.params;
-        const { nombre } = req.body;
+        const campos = req.body;
          const OBJCategoria = new Categoria();
-         const categorias = await OBJCategoria.update(id, nombre);
+         const categorias = await OBJCategoria.updatePartial(id, campos);
          return res.json(categorias);
     }
 

@@ -60,8 +60,60 @@ class Categoria{
     }
 
     async update(id,nombre) {
-        console.log(id, nombre);
+        try {
+            const [result] = await connection.query('update categorias set nombre = ? where id = ?' , [nombre, id]);
+            
+            const campos = result.forEach()
+            console.log(result.fields);
+            
+            if (result.affectedRows === 0) {
+                return {
+                    error: true,
+                    message: `no se pudo actualizar la categoria con id = ${id}`,
+                }   
+            }
+                return {
+                    error: false,
+                    message: `se actualizo nombre en Categoria con id = ${id}`,
+                    data: result
+                }  
+            
+        } catch (error) {
+            throw new Error("Error al Actualizar las categorias");
+        }
+    }
 
+    async updatePartial(id,campos) {
+        let query  = "UPDATE categorias SET ";
+        let params = [];
+        // contruimos de forma dinamica la consulta para acceder a todos los campos que llegan de la tabla categorias 
+        for (const [key, value] of (Object.entries(campos))) {
+            query += `${key} = ?, `;
+            params.push(value);
+        }
+        // eliminamos la ultima , y el espacio en blanco de la consulta
+        query = query.slice(0, -2);
+        query += "WHERE id = ?";
+        params.push(id)
+        try {
+            const [result]  = await connection.query(query.params);
+            if (result.affectedRows === 0) {
+                return {
+                    error: true,
+                    message: `No se pudo actualizar la categoria con id = ${id}`,
+                    data: datos
+                }   
+            }   
+            
+            return {
+                error: false,
+                message: `Se Actualizo con exito la categoria con id = ${id}`,
+                data: datos
+            }   
+    } catch (error) {
+            
+        }
+    
     }
 
     async relacionProductos(categoria_id) {
