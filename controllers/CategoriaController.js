@@ -17,6 +17,13 @@ class CategoriasController{
         const categorias = await OBJCategoria.create(nombre, descripcion);
        return res.json(categorias);
     }
+    
+    static async updateCategoria (req, res) {
+        const { id } = req.params;
+        const OBJCategoria = new Categoria();
+        const categorias = await OBJCategoria.put(id);
+        return res.json(categorias);
+    }
 
     static async deleteCategoria (req, res) {
         const { id } = req.params;

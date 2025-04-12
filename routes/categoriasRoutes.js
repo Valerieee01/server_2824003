@@ -8,6 +8,8 @@ categoriasRouters.get('/' , CategoriasController.getAllCategorias);
 
 categoriasRouters.post('/' , validarDatos,  CategoriasController.createCategoria);
 
+categoriasRouters.put('/:id', CategoriasController.updateCategoria)
+
 categoriasRouters.delete("/:id", CategoriasController.deleteCategoria );
 
 
