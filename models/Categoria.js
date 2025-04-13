@@ -59,30 +59,6 @@ class Categoria{
         }
     }
 
-    async update(id,nombre) {
-        try {
-            const [result] = await connection.query('update categorias set nombre = ? where id = ?' , [nombre, id]);
-            
-            const campos = result.forEach()
-            console.log(result.fields);
-            
-            if (result.affectedRows === 0) {
-                return {
-                    error: true,
-                    message: `no se pudo actualizar la categoria con id = ${id}`,
-                }   
-            }
-                return {
-                    error: false,
-                    message: `se actualizo nombre en Categoria con id = ${id}`,
-                    data: result
-                }  
-            
-        } catch (error) {
-            throw new Error("Error al Actualizar las categorias");
-        }
-    }
-
     async updatePartial(id,campos) {
         let query  = "UPDATE categorias SET ";
         let params = [];
