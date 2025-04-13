@@ -93,25 +93,27 @@ class Categoria{
         }
         // eliminamos la ultima , y el espacio en blanco de la consulta
         query = query.slice(0, -2);
-        query += "WHERE id = ?";
-        params.push(id)
+        query += " WHERE id = ?";   
+        params.push(id)    
+        console.log(query , params);
+         
         try {
-            const [result]  = await connection.query(query.params);
+            const [result]  = await connection.query(query, params);
             if (result.affectedRows === 0) {
                 return {
                     error: true,
                     message: `No se pudo actualizar la categoria con id = ${id}`,
-                    data: datos
+
                 }   
             }   
             
             return {
                 error: false,
                 message: `Se Actualizo con exito la categoria con id = ${id}`,
-                data: datos
+                data :  result
             }   
-    } catch (error) {
-            
+        } catch (error) {
+            throw new Error("Error al Actualizar las categorias");
         }
     
     }

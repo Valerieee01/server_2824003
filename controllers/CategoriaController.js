@@ -18,7 +18,7 @@ class CategoriasController{
        return res.json(categorias);
     }
     
-    static async updatePartial (req, res) {
+    static async updatePartial(req, res) {
         //query params
         const { id } = req.params;
         const campos = req.body;
@@ -26,9 +26,8 @@ class CategoriasController{
          const categorias = await OBJCategoria.updatePartial(id, campos);
          return res.json(categorias);
     }
-
     
-    static async deleteCategoria (req, res) {
+    static async deleteCategoria(req, res) {
         const { id } = req.params;
         const OBJCategoria = new Categoria();
         const categorias = await OBJCategoria.delete(id);
