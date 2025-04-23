@@ -12,7 +12,7 @@ categoriasRouters.put('/:id', validarDatos, CategoriasController.updatePartial)
 
 categoriasRouters.patch('/:id', validarDatos, CategoriasController.updatePartial)
 
-categoriasRouters.delete("/:id", validarDatos, CategoriasController.deleteCategoria);
+categoriasRouters.delete("/:id", CategoriasController.deleteCategoria);
 
 
 export default categoriasRouters;

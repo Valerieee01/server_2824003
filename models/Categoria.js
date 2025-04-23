@@ -1,4 +1,6 @@
+import { errorFalse, errorTrue } from "../middlewarm/manejoErrores.js";
 import connection from "../utils/db.js";
+
 
 class Categoria{
     constructor(){      
@@ -26,32 +28,25 @@ class Categoria{
     async delete(id) {
         try {
             const [datos] = await this.getById(id)
-            console.log(datos);
+            
+            if (!datos) {
+                return errorTrue(id);
+            }
             // consulto productos relacionados
             const tieneProductosRelacionados = await this.relacionProductos(datos.id);
             
             // consulta si tiene productos relacionados
             if (tieneProductosRelacionados.length > 0) {        
-                return {
-                    error: true,
-                    message: "No se puede eliminar la categoria existen productos relacionados"  
-                }   
+                return errorTrue(id);
             }
      
              // si no tiene se elimina 
             const [eliminado] = await connection.query(`delete from categorias where id = ${id}`);
      
                 if (eliminado.affectedRows > 0) {
-                    return {
-                        error: false,
-                        message: `Se elimino con exito la categoria con id = ${id}`,
-                        data: datos
-                    }   
+                    return errorFalse(id, datos);
                 }else {
-                    return {
-                        error: true,
-                        message: `No se pudo eliminar ninguna Categoria = ${id}`
-                    }  
+                    return errorTrue(id);
                 }
             
         } catch (error) {
@@ -76,18 +71,10 @@ class Categoria{
         try {
             const [result]  = await connection.query(query, params);
             if (result.affectedRows === 0) {
-                return {
-                    error: true,
-                    message: `No se pudo actualizar la categoria con id = ${id}`,
-
-                }   
+                return errorTrue(id);
             }   
             
-            return {
-                error: false,
-                message: `Se Actualizo con exito la categoria con id = ${id}`,
-                data :  result
-            }   
+            return errorFalse(id, result);
         } catch (error) {
             throw new Error("Error al Actualizar las categorias");
         }
@@ -107,10 +94,10 @@ class Categoria{
     async getById(id){
         const [consulta] = await connection.query(`select * from categorias where id = ${id}`);  
         
-        if (!consulta || consulta.length === 0) {
-            console.log('No se encontraron resultados para el id:', id);
-            return null;
-        }
+        // if (!consulta || consulta.length === 0) {
+        //     console.log('No se encontraron resultados para el id:', id);
+        //     return null;
+        // }
         
         return consulta;
     }
