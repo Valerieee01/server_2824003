@@ -1,14 +1,14 @@
 import header from "../componets/header.js";
-import{ loadView }from "./helpers/loadView.js";
 import "./main.css";
+import { router } from "./routes/router.js";
 
 
 const divApp = document.querySelector('#app');
-header()
+header();
 
 
 window.addEventListener('hashchange', () => {
-    loadView(divApp);
+ router(divApp);
 });
 
 

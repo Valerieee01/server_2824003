@@ -1,10 +1,8 @@
 
-export const loadView = async (elemento) => {
-    const hash = location.hash.slice(1);
-    const response = await fetch(`/src/views/${hash}/index.html`);
+export const loadView = async (hash, elemento) => {
+    const response = await fetch(`/src/views/${hash}`);
     const html = await response.text();
     elemento.innerHTML = html;
- 
 }
 
 

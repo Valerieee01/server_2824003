@@ -1,16 +1,27 @@
 
-<H1>Categoria</H1>
+<h1>Categoría</h1>
 <div class="content">
-    <form action="" id="formProductos">
+    <form id="formProductos">
         <div class="content-input">
-            <label for="nombre">Nombre Categoria: </label>
-            <br>
+            <label for="nombre">Nombre Categoría:</label>
             <input type="text" name="nombre" id="nombre">
         </div>
         <div class="content-input">
-            <label for="descripcion">Descripción Categoria:</label>
-            <br>
+            <label for="descripcion">Descripción Categoría:</label>
             <input type="text" name="descripcion" id="descripcion">
         </div> 
+        <button type="submit">Enviar</button>
     </form>
 </div>
+
+<table id="tablaCategorias">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Los datos se agregarán aquí -->
+    </tbody>
+</table>
