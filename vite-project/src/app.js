@@ -7,6 +7,9 @@ const divApp = document.querySelector('#app');
 header();
 
 
+window.addEventListener('DOMContentLoaded', () => {
+    router(divApp);
+   });
 window.addEventListener('hashchange', () => {
  router(divApp);
 });

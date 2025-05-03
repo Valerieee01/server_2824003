@@ -1,34 +1,45 @@
 import { loadView } from "../helpers/loadView.js";
+import { inicioController } from "../views/inicio/inicioController.js";
 import { categoriaController } from "../views/categorias/categoriaController.js";
 import { productoController } from "../views/productos/productoController.js";
 
-const routes ={
+const routes = {
+
+    inicio: {
+        "template": "inico/index.html",
+        controlador: inicioController
+      },
     productos: {
-        template: "productos/index.html", 
-        controlador: productoController
+      "template": "productos/index.html",
+      controlador: productoController
     },
     categorias: {
-        template: "categorias/index.html", 
-        controlador: categoriaController
-    
+      "template": "categorias/index.html",
+      controlador: categoriaController
     }
-}
+  };
 
-
-export const router = (element) => {
+export const router = (app) => {
     const hash = location.hash.slice(1);
+    
     const {template, controlador} = matchRoute(hash);
-    console.log(template, controlador);
+    
+    // llamando la vista
+    loadView(app, template);
 
-    controlador()
-
-    loadView(hash, element)
+    //ejecutar el controlador
+    controlador();
 }
 
 export const matchRoute = (hash) => {
+    if (!hash) {
+        return routes['inicio']
+    }
+
     for(const route in routes){
+        console.log(route, hash);
         if (route === hash) {
-            return route[route];
+            return routes[route];
         }
     }
     
