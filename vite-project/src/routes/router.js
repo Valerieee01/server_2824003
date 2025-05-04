@@ -1,6 +1,6 @@
 import { loadView } from "../helpers/loadView.js";
 import { inicioController } from "../views/inicio/inicioController.js";
-import { categoriaController } from "../views/categorias/categoriaController.js";
+import  {categoriaController}  from "../views/categorias/categoriaController.js";
 import { productoController } from "../views/productos/productoController.js";
 
 const routes = {
@@ -19,25 +19,19 @@ const routes = {
     }
   };
 
-export const router = (app) => {
+  export const router = async (app) => {
     const hash = location.hash.slice(1);
-    
-    const {template, controlador} = matchRoute(hash);
-    
-    // llamando la vista
-    loadView(app, template);
+    const { template, controlador } = matchRoute(hash);
 
-    //ejecutar el controlador
-    controlador();
-}
+    await loadView(app, template); 
+    controlador(); 
+};
 
 export const matchRoute = (hash) => {
     if (!hash) {
         return routes['inicio']
     }
-
     for(const route in routes){
-        console.log(route, hash);
         if (route === hash) {
             return routes[route];
         }

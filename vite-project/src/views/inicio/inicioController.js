@@ -1,3 +1,5 @@
 export const inicioController = () => {
-    alert("hola")
+    const inicio = document.querySelector("#inicio");
+    console.log(inicio);
+    
 }

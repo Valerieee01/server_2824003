@@ -1,8 +1,8 @@
 
-export const loadView = async (hash, template) => {
+export const loadView = async (elemento, template) => {    
     const response = await fetch(`/src/views/${template}`);
     const html = await response.text();
-    hash.innerHTML = html;
+    elemento.innerHTML = html;
 }
 
 

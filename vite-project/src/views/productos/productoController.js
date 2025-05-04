@@ -1,4 +1,7 @@
-import validarDatos from "../../../../middlewarm/validarProductos.js"
+import{ cargar_tabla }from './mostrarTabla.js';
+
 export const productoController = () => {
-    validarDatos();
+    const tabla = document.querySelector("#tablaProductos");
+    cargar_tabla(tabla)
 }
+

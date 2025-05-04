@@ -1,4 +1,4 @@
-const header = async () => {
+const header = () => {
 
     const divApp = document.querySelector('#app');
     const header = document.querySelector('.header');

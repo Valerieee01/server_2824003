@@ -1,4 +1,7 @@
-import validarDatos from "../../../../middlewarm/validarCategorias.js"
+import{ cargar_tabla }from './mostrarTabla.js';
+
 export const categoriaController = () => {
-    validarDatos();
+    const tabla = document.querySelector("#tablaCategorias");
+    cargar_tabla(tabla)
 }
+
