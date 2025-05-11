@@ -1,11 +1,9 @@
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
 }
-
 
 body{
     background-color: black;
@@ -87,6 +85,7 @@ button {
 button:hover {
     background-color: #424344;
 }
+
 table {
     margin-top: 30px;
     margin-left: 100px;
@@ -97,17 +96,28 @@ table {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
 th, td {
     padding: 12px 15px;
     text-align: left;
 }
+
 th {
     background-color: #f8f8f8;
     color: rgb(0, 0, 0);
 }
+
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
 tr:hover {
     background-color: #e6f0ff;
 }
+
+tbody{
+    width: 600px;
+    height: 600px;
+    scroll-behavior: auto;
+}
+

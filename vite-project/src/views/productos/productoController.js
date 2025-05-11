@@ -1,7 +1,17 @@
-import{ cargar_tabla }from './mostrarTabla.js';
+import { cargar_tabla, agregarEventosBotones } from './mostrarTabla.js';
 
-export const productoController = () => {
+export const productoController = async () => {
     const tabla = document.querySelector("#tablaProductos");
-    cargar_tabla(tabla)
-}
+    
+    if (!tabla) {
+        console.error("No se encontró la tabla con ID #tablaProductos");
+        return;
+    }
 
+    try {
+        await cargar_tabla(tabla);
+        await agregarEventosBotones();
+    } catch (error) {
+        console.error("Error en productoController:", error);
+    }
+}

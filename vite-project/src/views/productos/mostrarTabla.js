@@ -1,12 +1,15 @@
 
 import listarProductos from "../../casos_de_uso/productos/listarProductos.js";
+import eliminar_productos_por_id from "../../casos_de_uso/productos/eleminarProductoPorId.js";
 
 export const cargar_tabla = async (tabla) => {
     const Produtos = await listarProductos();
+    const tBody = tabla.querySelector("tbody");
+    tBody.innerHTML = '';
+    
     (Produtos.data).forEach(productos => {
         crearFila(productos, tabla);
-    });
-    
+    });   
 }
 
 export const crearFila = ({ id, nombre, descripcion }, tabla) => {
@@ -40,5 +43,16 @@ export const crearFila = ({ id, nombre, descripcion }, tabla) => {
     tdBotonera.append(div);
   
     tr.setAttribute("id", `user_${id}`);
-  
   }
+
+export const agregarEventosBotones = async() => {
+     const tabla = document.querySelector("#tablaProductos");
+        tabla.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('eliminar')) {
+            if (confirm("¿Estás seguro de eliminar este producto?")) {
+                await eliminar_productos_por_id(e.target.dataset.id);
+                await cargar_tabla(tabla); 
+            }
+        }
+    });
+};

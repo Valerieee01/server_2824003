@@ -1,8 +1,12 @@
 
+import eliminar_categorias_por_id from "../../casos_de_uso/categoria/eleminarCategoriaPorId.js";
 import listarCategorias from "../../casos_de_uso/categoria/listarCategorias.js";
 
 export const cargar_tabla = async (tabla) => {
     const categorias = await listarCategorias();
+    const tBody = tabla.querySelector("tbody");
+    tBody.innerHTML = '';
+    
     (categorias.data).forEach(categoria => {
         crearFila(categoria, tabla);
     });    
@@ -40,6 +44,16 @@ export const crearFila = ({ id, nombre, descripcion }, tabla) => {
   
     tr.setAttribute("id", `user_${id}`);
 
-    
-  
-  }
+}
+
+export const agregarEventosBotones = async() => {
+     const tabla = document.querySelector("#tablaCategorias");
+        tabla.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('eliminar')) {
+            if (confirm("¿Estás seguro de eliminar este producto?")) {
+                await eliminar_categorias_por_id(e.target.dataset.id);
+                await cargar_tabla(tabla); 
+            }
+        }
+    });
+};
