@@ -27,10 +27,12 @@ export const crearFila = ({ id, nombre, descripcion }, tabla) => {
     tddescripcion.textContent = descripcion;
     
     const div = document.createElement("div");
-    const btnEliminar = document.createElement("button");
-    const btnEditar = document.createElement("button");
+    const btnEliminar = document.createElement("a");
+    const btnEditar = document.createElement("a");
   
     btnEditar.setAttribute("data-id", id)
+    btnEditar.setAttribute("href", `#editarcategoria/${id}`)
+
     btnEliminar.setAttribute("data-id", id)
   
     btnEditar.textContent = "Editar";
