@@ -3,7 +3,8 @@ import { inicioController } from "../views/inicio/inicioController.js";
 import  {categoriaController}  from "../views/categorias/categoriaController.js";
 import { productoController } from "../views/productos/productoController.js";
 import { crearCategoriaController } from "../views/categorias/crearCategoriaController.js"
-import { editarController } from "../views/categorias/editarController.js";
+import { editarControllerCat } from "../views/categorias/editarController.js";
+import { editarControllerPro } from "../views/productos/editarController.js";
 import { crearProductoController } from "../views/productos/crearProductoController.js";
 
 const routes = {
@@ -29,8 +30,13 @@ const routes = {
   },
   "editarcategoria/:id": {
     "template": "categorias/editar.html",
-    controlador: editarController
+    controlador: editarControllerCat
+  },
+  "editarproducto/:id": {
+    "template": "productos/editar.html",
+    controlador: editarControllerPro
   }
+
 
   
 };

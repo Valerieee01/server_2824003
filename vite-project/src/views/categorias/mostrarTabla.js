@@ -7,7 +7,7 @@ export const cargar_tabla = async (tabla) => {
     const tBody = tabla.querySelector("tbody");
     tBody.innerHTML = '';
     
-    (categorias.data).forEach(categoria => {
+    (categorias).forEach(categoria => {
         crearFila(categoria, tabla);
     });    
 }
@@ -48,12 +48,13 @@ export const crearFila = ({ id, nombre, descripcion }, tabla) => {
 
 }
 
-export const agregarEventosBotones = async() => {
+export const agregarEventosBotones = async () => {
      const tabla = document.querySelector("#tablaCategorias");
         tabla.addEventListener('click', async (e) => {
         if (e.target.classList.contains('eliminar')) {
             if (confirm("¿Estás seguro de eliminar este producto?")) {
                 await eliminar_categorias_por_id(e.target.dataset.id);
+                await listarCategorias();
                 await cargar_tabla(tabla); 
             }
         }

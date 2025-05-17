@@ -1,11 +1,12 @@
 import Swal from "sweetalert2";
-export const crearProductoController =  () => {
+import {cargar_select} from "./listarCategoriasForm.js";
+export const crearProductoController = async () => {
     // Declaración de variables
     const form = document.querySelector('#formProductos');
     const nombre = document.querySelector('#nombre');
     const descripcion = document.querySelector('#descripcion');
-    const cod_categoria = document.querySelector('#cod_categoria');
-
+    const precio =  document.querySelector('#precio');
+    const categoria_id = document.querySelector('#categoria_id');
 
     // Declaración de métodos
     const enviar = async (e) => {
@@ -13,16 +14,17 @@ export const crearProductoController =  () => {
         const data = {
             nombre: nombre.value,
             descripcion: descripcion.value,
-            cod_categoria: cod_categoria.value
+            precio: precio.value,
+            categoria_id: categoria_id.value
         }
         const request = await fetch('http://localhost:3000/api/productos', {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify(data), // serializar los datos
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+                'Content-type': 'application/json; charset=UTF-8', // se envian los datos en formato json
             },
         });
-        const response = await request.json();
+        const response = await request.json(); // se estan transformando los datos a la forma de js
         if (response.success) {
             form.reset()
              Swal.fire({
@@ -43,6 +45,8 @@ export const crearProductoController =  () => {
          
         }        
     }
+
+    await cargar_select(form)
 
     // Declaración de eventos
     form.addEventListener('submit', enviar)    
