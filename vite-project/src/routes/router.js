@@ -4,9 +4,9 @@ import  {categoriaController}  from "../views/categorias/categoriaController.js"
 import { productoController } from "../views/productos/productoController.js";
 import { crearCategoriaController } from "../views/categorias/crearCategoriaController.js"
 import { editarController } from "../views/categorias/editarController.js";
-import { productosController } from "../views/productos/crearProductoController.js";
-const routes = {
+import { crearProductoController } from "../views/productos/crearProductoController.js";
 
+const routes = {
   "/": {
       "template": "inico/index.html",
       controlador: inicioController
@@ -16,8 +16,8 @@ const routes = {
     controlador: productoController
   },
   producto: {
-    "template": "productos/producto.html",
-    controlador: productosController
+    "template": "productos/crear.html",
+    controlador: crearProductoController
   },
   categorias: {
     "template": "categorias/index.html",

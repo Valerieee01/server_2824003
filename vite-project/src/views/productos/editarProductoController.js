@@ -1,9 +1,12 @@
 import Swal from "sweetalert2";
-export const crearProductoController =  () => {
+export const editarProductoController =  (a) => {
+    console.log(a);
+    
     // Declaración de variables
-    const form = document.querySelector('#formProductos');
+    const form = document.querySelector('form');
     const nombre = document.querySelector('#nombre');
     const descripcion = document.querySelector('#descripcion');
+    const precio = document.querySelector('#precio');
     const cod_categoria = document.querySelector('#cod_categoria');
 
 
@@ -13,10 +16,11 @@ export const crearProductoController =  () => {
         const data = {
             nombre: nombre.value,
             descripcion: descripcion.value,
+            precio:precio.value,
             cod_categoria: cod_categoria.value
         }
-        const request = await fetch('http://localhost:3000/api/productos', {
-            method: 'POST',
+        const request = await fetch(`http://localhost:3000/api/productos/${a.id}`, {
+            method: 'PATCH',
             body: JSON.stringify(data),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -31,7 +35,7 @@ export const crearProductoController =  () => {
                 icon: 'success',
                 confirmButtonText: 'Cool'
             })
-            location.hash = "#producto";
+            location.hash = "#categorias";
         }else{
             console.log(response);   
             Swal.fire({
