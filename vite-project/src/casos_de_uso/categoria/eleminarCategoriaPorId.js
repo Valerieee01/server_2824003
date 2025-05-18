@@ -5,7 +5,8 @@ export const eliminar_categorias_por_id = async (id) => {
     });
     const response = await request.json();
     if (response.success) {
-        form.reset()
+        const tr = document.querySelector(`#user_${id}`)
+        tr.remove();
           Swal.fire({
             title: 'Muy bien!',
             text: response.message,

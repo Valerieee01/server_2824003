@@ -54,7 +54,6 @@ export const agregarEventosBotones = async () => {
         if (e.target.classList.contains('eliminar')) {
             if (confirm("¿Estás seguro de eliminar este producto?")) {
                 await eliminar_categorias_por_id(e.target.dataset.id);
-                await listarCategorias();
                 await cargar_tabla(tabla); 
             }
         }

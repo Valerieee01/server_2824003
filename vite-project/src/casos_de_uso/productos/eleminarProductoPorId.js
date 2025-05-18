@@ -5,13 +5,15 @@ const eliminar_productos_por_id = async (id) => {
     });
     const response = await request.json();
         if (response.success) {
+            const tr = document.querySelector(`#user_${id}`)
+            tr.remove();
               Swal.fire({
                 title: 'Muy bien!',
                 text: response.message,
                 icon: 'success',
                 confirmButtonText: 'Cool'
         })
-            location.hash = "#producto";
+            location.hash = "#productos";
         }else{
             console.log(response);   
             Swal.fire({

@@ -7,7 +7,7 @@ export const editarProductoController =  (a) => {
     const nombre = document.querySelector('#nombre');
     const descripcion = document.querySelector('#descripcion');
     const precio = document.querySelector('#precio');
-    const cod_categoria = document.querySelector('#cod_categoria');
+    const categoria_id = document.querySelector('#categoria_id');
 
 
     // Declaración de métodos
@@ -17,7 +17,7 @@ export const editarProductoController =  (a) => {
             nombre: nombre.value,
             descripcion: descripcion.value,
             precio:precio.value,
-            cod_categoria: cod_categoria.value
+            categoria_id: categoria_id.value
         }
         const request = await fetch(`http://localhost:3000/api/productos/${a.id}`, {
             method: 'PATCH',
