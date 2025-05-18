@@ -13,7 +13,7 @@ export const eliminar_categorias_por_id = async (id) => {
             icon: 'success',
             confirmButtonText: 'Cool'
     })
-        location.hash = "#producto";
+        location.hash = "#categorias";
     }else{
         console.log(response);   
         Swal.fire({
