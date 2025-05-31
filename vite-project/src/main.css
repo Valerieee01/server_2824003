@@ -43,6 +43,17 @@ h1 {
 
 }
 
+.title-ingreso{
+    color: black;
+
+}
+p{
+    color: #fff8f8;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
 .content {
     background: rgb(255, 255, 255);
     padding: 20px;
@@ -53,6 +64,9 @@ h1 {
     margin: 0 auto;
 }
 
+.ingreso{
+    margin-top: 50px;
+}
 .content-input {
     margin-bottom: 15px;
 }
@@ -60,7 +74,7 @@ label {
     font-weight: bold;
     color: #000000;
 }
-input[type="text"] {
+input[type="text"], input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -70,7 +84,7 @@ input[type="text"] {
     transition: border-color 0.3s;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="password"]:focus {
     border-color: #828384;
 }
 
