@@ -6,6 +6,8 @@ import { crearCategoriaController } from "../views/categorias/crearCategoriaCont
 import { editarControllerCat } from "../views/categorias/editarController.js";
 import { editarControllerPro } from "../views/productos/editarController.js";
 import { crearProductoController } from "../views/productos/crearProductoController.js";
+import { registroController } from "../views/registro/registroController.js";
+import { loginController } from "../views/login/loginController.js";
 
 const routes = {
   "/": {
@@ -33,8 +35,14 @@ const routes = {
     controlador: editarControllerCat
   },
   "editarproducto/:id": {
-    "template": "productos/editar.html",
+    "template": "productos/login.html",
     controlador: editarControllerPro
+  }, login: {
+    "template": "login/index.html",
+    controlador: loginController
+  }, registro: {
+    "template": "registro/index.html",
+    controlador: registroController
   }
 
 
