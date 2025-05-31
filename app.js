@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/categorias' , categoriasRouters); 
 app.use('/productos', productosRoutes)
 
+
 app.listen(3000 , () => {
     //lo esta recibiendo desde git
     console.log("Hola mundo");
