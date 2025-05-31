@@ -1,4 +1,5 @@
-import Swal from "sweetalert2";
+import { error, success } from "../../helpers/alerts";
+import { setData } from "../../helpers/auth";
 export const loginController = () => {
      // Declaración de variables
     const form = document.querySelector('form');
@@ -22,26 +23,20 @@ export const loginController = () => {
         const response = await request.json();
         if (response.success) {
             form.reset()
-             Swal.fire({
-                title: 'Muy bien!',
-                text: response.message,
-                icon: 'success',
-                confirmButtonText: 'Cool'
-            })
-            location.hash = "#login";
+             success(response);
+             setData(response.data);
+             location.hash = "#inicio";
+             window.dispatchEvent(
+                new CostumeEvent("nombre", {})
+             );
         }else{
             console.log(response);   
-            Swal.fire({
-                title: 'Error!',
-                text: response.message,
-                icon: 'error',
-                confirmButtonText: 'Cool'
-            })
+            error(response);
          
         }        
     }
 
     // Declaración de eventos
-    form.addEventListener('submit', enviar)    
+    form.addEventListener('submit', enviar);    
 
 }

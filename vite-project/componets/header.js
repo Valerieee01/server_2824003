@@ -5,7 +5,7 @@ const header = () => {
     const divHeader = document.createElement('div')
     const aProductos = document.createElement('a');
     const aCategorias = document.createElement('a');
-    const aLogo = document.createElement('a');
+    const aInicio = document.createElement('a');
     const alogin = document.createElement('a');
     const aRegistro = document.createElement('a');
     
@@ -14,7 +14,7 @@ const header = () => {
     divHeader.classList.add('container-menu');
     aProductos.classList.add('link-menu-a');
     aCategorias.classList.add('link-menu-a');
-    aLogo.classList.add('link-menu-a');
+    aInicio.classList.add('link-menu-a');
     divApp.classList.add('container');
     alogin.classList.add('link-menu-a');
     aRegistro.classList.add('link-menu-a');
@@ -23,7 +23,7 @@ const header = () => {
     // asignar atrubutos
     aCategorias.setAttribute('href', '#categorias' );
     aProductos.setAttribute('href', '#productos' );
-    aLogo.setAttribute('href', '' );
+    aInicio.setAttribute('href', '#inicio' );
     alogin.setAttribute('href', '#login' );
     aRegistro.setAttribute('href', '#registro' );
 
@@ -32,15 +32,22 @@ const header = () => {
     // contenidos de texto
     aProductos.textContent = 'Productos';
     aCategorias.textContent = 'Categorias';
-    aLogo.textContent = 'Inicio';
+    aInicio.textContent = 'Inicio';
     alogin.textContent = 'Login';
     aRegistro.textContent = 'Registro';
 
 
     
     // añadir los elementos
-    divHeader.append(aProductos, aCategorias, aLogo, alogin,aRegistro);
+    divHeader.append(aProductos, aCategorias, aInicio, alogin,aRegistro);
     header.append(divHeader);
+
+    window.addEventListener('nombre', (e) => {
+        alert("Escuchamos el evento");
+    })
+
 }
+
+
 
 export default header;

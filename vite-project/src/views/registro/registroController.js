@@ -1,4 +1,4 @@
-import Swal from "sweetalert2";
+import { error, success } from "../../helpers/alerts";
 export const registroController = () => {
       // Declaración de variables
         const form = document.querySelector('form');
@@ -24,21 +24,11 @@ export const registroController = () => {
             const response = await request.json();
             if (response.success) {
                 form.reset()
-                 Swal.fire({
-                    title: 'Muy bien!',
-                    text: response.message,
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                })
-                location.hash = "#register";
+                  success(response);
+                location.hash = "#login";
             }else{
                 console.log(response);   
-                Swal.fire({
-                    title: 'Error!',
-                    text: response.message,
-                    icon: 'error',
-                    confirmButtonText: 'Cool'
-                })
+                error(response);
              
             }        
         }
