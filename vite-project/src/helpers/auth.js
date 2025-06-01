@@ -1,11 +1,19 @@
-export const setData = (data) => {
-    console.log(data); 
-    // console.log(data.accessToken);
-    // console.log(data.refreshToken);
-    localStorage.setItem("accessToken",data.accessToken);
-    localStorage.setItem("refreshToken",data.refreshToken);
+
+export const setData = async (data) => {
+    try {
+        console.log(data); 
+        // await enviarDatosConEncabezados(data.accessToken, data);
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+    } catch (error) {
+        console.error("Error setting data:", error);
+    }
+}
 
 
+export const cleanLocalStorage = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
 }
 
 export const getData = () => {

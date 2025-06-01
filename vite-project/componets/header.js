@@ -1,3 +1,5 @@
+import { cleanLocalStorage, estaAutenticado } from "../src/helpers/auth";
+
 const header = () => {
 
     const divApp = document.querySelector('#app');
@@ -8,6 +10,9 @@ const header = () => {
     const aInicio = document.createElement('a');
     const alogin = document.createElement('a');
     const aRegistro = document.createElement('a');
+    const aSalir = document.createElement('a');
+
+
     
     // clases 
     header.classList.add('container-header');
@@ -18,6 +23,8 @@ const header = () => {
     divApp.classList.add('container');
     alogin.classList.add('link-menu-a');
     aRegistro.classList.add('link-menu-a');
+    aSalir.classList.add('link-menu-a');
+
 
     
     // asignar atrubutos
@@ -26,6 +33,8 @@ const header = () => {
     aInicio.setAttribute('href', '#inicio' );
     alogin.setAttribute('href', '#login' );
     aRegistro.setAttribute('href', '#registro' );
+    aSalir.setAttribute('href', '#salir' );
+
 
 
     
@@ -35,6 +44,7 @@ const header = () => {
     aInicio.textContent = 'Inicio';
     alogin.textContent = 'Login';
     aRegistro.textContent = 'Registro';
+    aSalir.textContent  = 'Salir';
 
 
     
@@ -42,12 +52,35 @@ const header = () => {
     divHeader.append(aProductos, aCategorias, aInicio, alogin,aRegistro);
     header.append(divHeader);
 
-    window.addEventListener('nombre', (e) => {
-        alert("Escuchamos el evento");
+    window.addEventListener('modificandoHeader', (e) => {
+        if (estaAutenticado()) {
+            eliminar(aRegistro, alogin, divHeader, aSalir)
+        }
     })
 
+    aSalir.addEventListener('click', (e) => {
+       e.preventDefault();
+       cleanLocalStorage();
+       location.hash = "#inicio";
+        agregar(divHeader, aRegistro, alogin)
+        aSalir.remove();
+    })
+
+    if (estaAutenticado()){
+        eliminar(aRegistro, alogin, divHeader, aSalir)
+    }
 }
 
+function agregar(divHeader, aRegistro, alogin) {
+    console.log(divHeader);
+    divHeader.append(aRegistro, alogin);
+}
+
+function eliminar(aRegistro, alogin, divHeader, aSalir){
+    divHeader.append(aSalir);
+    alogin.remove();
+    aRegistro.remove();
+}
 
 
 export default header;
