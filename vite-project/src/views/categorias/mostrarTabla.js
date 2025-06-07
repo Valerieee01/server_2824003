@@ -1,5 +1,6 @@
 import eliminar_categorias_por_id from "../../casos_de_uso/categoria/eleminarCategoriaPorId.js";
 import listarCategorias from "../../casos_de_uso/categoria/listarCategorias.js";
+import { editarControllerCat } from "./editarController.js";
 
 export const cargar_tabla = async (tabla) => {
     const categorias = await listarCategorias();

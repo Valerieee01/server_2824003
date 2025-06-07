@@ -42,7 +42,7 @@ const routes = {
     private: true,
   },
   "editarproducto/:id": {
-    template: "productos/login.html",
+    template: "productos/editar.html",
     controlador: editarControllerPro,
     private: true,
   },

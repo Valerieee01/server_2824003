@@ -1,9 +1,6 @@
 import listarCategorias from "../../casos_de_uso/categoria/listarCategorias.js"
 
 export const cargar_select = async (form, selccionado = 0) => {
-
-    
-    
     const categorias = await listarCategorias();
     const select = form.querySelector("#categoria_id");
     const op = document.createElement("option");

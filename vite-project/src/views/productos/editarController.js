@@ -1,6 +1,7 @@
 import { editarProductoController } from "./editarProductoController";
 import { cargar_select } from "./listarCategoriasForm";
 import listarCategorias from "../../casos_de_uso/categoria/listarCategorias.js";
+import { encabezados } from "../../helpers/solicitudes.js";
 export const editarControllerPro = async (a) => {
 
     // declaracion de variables
@@ -13,9 +14,12 @@ export const editarControllerPro = async (a) => {
     const categorias = await listarCategorias();
 
     // Solicitud a la API
-    const request = await fetch(`http://localhost:3000/api/productos/${a.id}`);
+    const request = await fetch(`http://localhost:3000/api/productos/${a.id}`, {
+        method : 'GET',
+        headers: encabezados
+    });
     const {data} = await request.json();
-
+ 
     //Llenando los campos
     nombre.value = data.nombre;
     descripcion.value = data.descripcion;

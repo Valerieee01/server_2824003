@@ -2,6 +2,7 @@
 import listarProductos from "../../casos_de_uso/productos/listarProductos.js";
 import eliminar_productos_por_id from "../../casos_de_uso/productos/eleminarProductoPorId.js";
 import listarCategorias from "../../casos_de_uso/categoria/listarCategorias.js";
+import { editarControllerPro } from "./editarController.js";
 
 export const cargar_tabla = async (tabla) => {
     const Produtos = await listarProductos();
@@ -52,7 +53,7 @@ export const crearFila = async ({ id, nombre, descripcion, categoria_id }, tabla
     tr.setAttribute("id", `user_${id}`);
   }
 
-export const agregarEventosBotones = async() => {
+export const agregarEventosBotones = async () => {
      const tabla = document.querySelector("#tablaProductos");
         tabla.addEventListener('click', async (e) => {
         if (e.target.classList.contains('eliminar')) {

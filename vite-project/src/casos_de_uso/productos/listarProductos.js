@@ -1,4 +1,4 @@
-import { encabezados } from "../../helpers/solicitudes";
+import { encabezados } from "../../helpers/solicitudes.js";
 
 const listarProductos = async () => {
   try {

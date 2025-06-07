@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import {cargar_select} from "./listarCategoriasForm.js";
+import { encabezados } from "../../helpers/solicitudes.js";
 export const crearProductoController = async () => {
     // Declaración de variables
     const form = document.querySelector('#formProductos');
@@ -20,9 +21,7 @@ export const crearProductoController = async () => {
         const request = await fetch('http://localhost:3000/api/productos', {
             method: 'POST',
             body: JSON.stringify(data), // serializar los datos
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8', // se envian los datos en formato json
-            },
+            headers: encabezados
         });
         const response = await request.json(); // se estan transformando los datos a la forma de js
         if (response.success) {

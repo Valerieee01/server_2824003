@@ -1,3 +1,4 @@
+import { encabezados } from "../../helpers/solicitudes";
 import { editarCategoriaController } from "./editarCategoriasController";
 
 export const editarControllerCat = async (a) => {
@@ -6,7 +7,10 @@ export const editarControllerCat = async (a) => {
     const descripcion = document.querySelector('#descripcion')
 
     // Solicitud a la API
-    const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`);
+    const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`,{
+        method: 'GET',
+        headers: encabezados
+    });
     const { data } = await request.json();
 
     //Llenando los campos

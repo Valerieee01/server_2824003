@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { encabezados } from "../../helpers/solicitudes.js";
 export const editarProductoController =  (a) => {
     console.log(a);
     
@@ -22,9 +23,7 @@ export const editarProductoController =  (a) => {
         const request = await fetch(`http://localhost:3000/api/productos/${a.id}`, {
             method: 'PATCH',
             body: JSON.stringify(data),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
+            headers: encabezados
         });
         const response = await request.json();
         if (response.success) {
@@ -35,7 +34,7 @@ export const editarProductoController =  (a) => {
                 icon: 'success',
                 confirmButtonText: 'Cool'
             })
-            location.hash = "#categorias";
+            location.hash = "#productos";
         }else{
             console.log(response);   
             Swal.fire({

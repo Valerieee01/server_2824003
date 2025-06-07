@@ -1,7 +1,12 @@
 import Swal from "sweetalert2";
+import { refrescarAccessToken } from "../../helpers/solicitudesRefresh";
+import { encabezados } from "../../helpers/solicitudes.js"
+
 export const eliminar_categorias_por_id = async (id) => {
      const request = await fetch(`http://localhost:3000/api/categorias/${id}`, {
       method: 'DELETE',
+    headers : encabezados
+      
     });
     const response = await request.json();
     if (response.success) {
@@ -15,7 +20,7 @@ export const eliminar_categorias_por_id = async (id) => {
     })
         location.hash = "#categorias";
     }else{
-        console.log(response);   
+        console.log(response); 
         Swal.fire({
             title: 'Error!',
             text: response.message,

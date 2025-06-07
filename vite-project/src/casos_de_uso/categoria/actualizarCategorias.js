@@ -1,3 +1,5 @@
+import { encabezados } from "../../helpers/solicitudes.js"
+
 export const actualizar_categorias = (id, data) => {
   fetch(`http://localhost:3000/api/categorias/${id}`, {
     method: "PUT",
